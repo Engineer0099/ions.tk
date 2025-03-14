@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>From</title>
+  <style>
+    /* General Styles */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f4f4f4;
+    }
+
+    /* Container */
+    .container {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .question {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
+
+    .question a {
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    .question a:hover {
+      text-decoration: underline;
+    }
+
+    .dropdowns {
+      margin-bottom: 20px;
+    }
+
+    .dropdowns select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+
+    .floor-plan {
+      margin-bottom: 20px;
+    }
+
+    .floor-plan img {
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .confirm-button button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .confirm-button button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Heading -->
+    <h1>FROM</h1>
+
+    <!-- Question and Link -->
+    <div class="question">
+      <h1>Where are you?</h1>
+      <a href="#">I don't know</a>
+    </div>
+
+    <!-- Dropdowns for Floor and Room -->
+    <div class="dropdowns">
+      <select id="floor">
+        <option value="">Select Floor</option>
+        <option value="1">Floor 1</option>
+        <option value="2">Floor 2</option>
+        <option value="3">Floor 3</option>
+        <option value="4">Floor 4</option>
+        <option value="5">Floor 5</option>
+      </select>
+
+      <select id="room">
+        <option value="">Select Room</option>
+        <option value="101">Room 101</option>
+        <option value="102">Room 102</option>
+        <option value="103">Room 103</option>
+        <option value="104">Room 104</option>
+        <option value="105">Room 105</option>
+      </select>
+    </div>
+
+    <!-- Floor Plan Display -->
+    <div class="floor-plan">
+      <img src="floor-plan-placeholder.jpg" alt="Floor Plan">
+    </div>
+
+    <!-- Confirm Button -->
+    <div class="confirm-button">
+      <button onclick="confirmSelection()">Confirm</button>
+    </div>
+  </div>
+
+  <script>
+    // Confirm Selection Functionality
+    function confirmSelection() {
+      const floor = document.getElementById('floor').value;
+      const room = document.getElementById('room').value;
+
+      if (!floor || !room) {
+        alert('Please select both a floor and a room.');
+      } else {
+        alert(`You selected Floor ${floor}, Room ${room}.`);
+        // Add further logic to handle the confirmation
+        window.location.href = 'to.html';
+      }
+    }
+  </script>
+</body>
+</html>

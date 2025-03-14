@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Where Are You</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f0f0f0;
+      margin: 0;
+      position: relative;
+    }
+    h1 {
+      font-size: 36px;
+      margin: 20px;
+    }
+    .container {
+      position: relative;
+      width: 80%;
+      max-width: 600px;
+      height: 500px;
+      border: 2px solid #ccc;
+      background-image: url('https://via.placeholder.com/600x500'); /* Replace with your floor plan image */
+      background-size: cover;
+      background-position: center;
+      cursor: pointer;
+    }
+    .circle {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: green;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .confirmation-button {
+      display: none;
+      position: absolute;
+      top: 60%;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .dropdown-container {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      border: 2px solid #ccc;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      z-index: 100;
+    }
+    .dropdown-container select {
+      padding: 10px;
+      font-size: 16px;
+    }
+    .final-confirm-button {
+      display: none;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>WHERE ARE YOU</h1>
+  <div class="container" onclick="moveCircle(event)">
+    <!-- The circle will appear here -->
+  </div>
+
+  <!-- Confirmation Button -->
+  <button class="confirmation-button" onclick="showDropdown()">Confirm Location</button>
+
+  <!-- Dropdown Container -->
+  <div class="dropdown-container">
+    <label for="choices">Choose a Number:</label>
+    <select id="choices" onchange="enableConfirmButton()">
+      <option value="">Select...</option>
+      <option value="Number One">Number One</option>
+      <option value="Number Two">Number Two</option>
+      <option value="Number Three">Number Three</option>
+      <option value="Number Four">Number Four</option>
+      <option value="Number Five">Number Five</option>
+      <option value="Number Six">Number Six</option>
+      <option value="Number Seven">Number Seven</option>
+      <option value="Number Eight">Number Eight</option>
+      <option value="Number Nine">Number Nine</option>
+      <option value="Number Ten">Number Ten</option>
+    </select>
+    <button class="final-confirm-button" onclick="finalConfirmation()">Confirm Selection</button>
+  </div>
+
+  <!-- QR Code Library -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+
+  <script>
+    function moveCircle(event) {
+      const container = document.querySelector('.container');
+      const circle = document.createElement('div');
+      circle.classList.add('circle');
+
+      // Get the clicked position relative to the container
+      const rect = container.getBoundingClientRect();
+      const x = event.clientX - rect.left;
+      const y = event.clientY - rect.top;
+
+      // Set the position of the circle
+      circle.style.left = `${x}px`;
+      circle.style.top = `${y}px`;
+
+      // Append the circle to the container
+      container.innerHTML = ''; // Clear any previous circle
+      container.appendChild(circle);
+
+      // Show the confirmation button after user clicks
+      document.querySelector('.confirmation-button').style.display = 'block';
+    }
+
+    function showDropdown() {
+      // Show the dropdown container
+      document.querySelector('.dropdown-container').style.display = 'block';
+    }
+
+    function enableConfirmButton() {
+      // Show the final confirm button when an option is selected
+      const selectedOption = document.getElementById('choices').value;
+      const confirmButton = document.querySelector('.final-confirm-button');
+      if (selectedOption) {
+        confirmButton.style.display = 'block';
+      } else {
+        confirmButton.style.display = 'none';
+      }
+    }
+
+    function finalConfirmation() {
+      const selectedOption = document.getElementById('choices').value;
+
+      if (selectedOption) {
+        alert('You are Good to Go');
+        setTimeout(() => {
+          // Refresh the page after 1 second
+          location.reload();
+        }, 1000);
+      } else {
+        alert('Please select a valid option');
+      }
+    }
+  </script>
+
+</body>
+</html>

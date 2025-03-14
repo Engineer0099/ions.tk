@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register</title>
+  <style>
+    /* General Styles */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+      height: 100%;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-top: 1rem;
+      margin-bottom: 15px;
+      
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: #007bff;
+    }
+
+    .password-container {
+      position: relative;
+    }
+
+    .password-container .toggle-password {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: #777;
+    }
+
+    .password-container .toggle-password:hover {
+      color: #333;
+    }
+
+    .error {
+      border-color: red !important;
+    }
+
+    .success {
+      border-color: green !important;
+    }
+
+    .register-button {
+      width: 100%;
+      padding: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .register-button:hover {
+      background-color: #0056b3;
+    }
+
+    .sign-in-link {
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .sign-in-link a {
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    .sign-in-link a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Register</h2>
+    <form id="registerForm">
+      <!-- First Name -->
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input type="text" id="firstName" name="firstName" required>
+      </div>
+
+      <!-- Middle Name -->
+      <div class="form-group">
+        <label for="middleName">Middle Name</label>
+        <input type="text" id="middleName" name="middleName">
+      </div>
+
+      <!-- Last Name -->
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input type="text" id="lastName" name="lastName" required>
+      </div>
+
+      <!-- Address -->
+      <div class="form-group">
+        <label for="address">Address</label>
+        <input type="text" id="address" name="address" required>
+      </div>
+
+      <!-- Username -->
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" required>
+      </div>
+
+      <!-- Password -->
+      <div class="form-group">
+        <label for="password">Password</label>
+        <div class="password-container">
+          <input type="password" id="password" name="password" minlength="8" required>
+          <span class="toggle-password" onclick="togglePasswordVisibility('password')">👁️</span>
+        </div>
+      </div>
+
+      <!-- Confirm Password -->
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <div class="password-container">
+          <input type="password" id="confirmPassword" name="confirmPassword" minlength="8" required>
+          <span class="toggle-password" onclick="togglePasswordVisibility('confirmPassword')">👁️</span>
+        </div>
+      </div>
+
+      <!-- Organization Name -->
+      <div class="form-group">
+        <label for="organization">Organization Name</label>
+        <input type="text" id="organization" name="organization" required>
+      </div>
+
+      <!-- Position -->
+      <div class="form-group">
+        <label for="position">Position</label>
+        <select id="position" name="position" required>
+          <option value="">Select Position</option>
+          <option value="Number One">Admin</option>
+          <option value="Number Two">Admin 2</option>
+          <option value="Number Three">Manager</option>
+        </select>
+      </div>
+
+      <!-- Register Button -->
+      <button type="submit" class="register-button">Register</button>
+    </form>
+
+    <!-- Already have an account? -->
+    <div class="sign-in-link">
+      Already have an account? <a href="login.html">Sign In</a>
+    </div>
+  </div>
+
+  <script>
+    // Toggle Password Visibility
+    function togglePasswordVisibility(inputId) {
+      const input = document.getElementById(inputId);
+      if (input.type === "password") {
+        input.type = "text";
+      } else {
+        input.type = "password";
+      }
+    }
+
+    // Password Match Validation
+    const password = document.getElementById("password");
+    const confirmPassword = document.getElementById("confirmPassword");
+
+    confirmPassword.addEventListener("input", () => {
+      if (confirmPassword.value !== password.value) {
+        confirmPassword.classList.add("error");
+        confirmPassword.classList.remove("success");
+      } else {
+        confirmPassword.classList.remove("error");
+        confirmPassword.classList.add("success");
+      }
+    });
+
+    // Prevent Default Form Submission
+    document.getElementById("registerForm").addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      // Check if all fields are filled
+      const inputs = document.querySelectorAll("#registerForm input, #registerForm select");
+      let isValid = true;
+      inputs.forEach((input) => {
+        if (!input.value) {
+          isValid = false;
+          input.classList.add("error");
+        } else {
+          input.classList.remove("error");
+        }
+      });
+
+      // Check if passwords match
+      if (password.value !== confirmPassword.value) {
+        isValid = false;
+        confirmPassword.classList.add("error");
+      }
+
+      // If valid, submit the form (you can replace this with an actual submission)
+      if (isValid) {
+        alert("Form submitted successfully!");
+        // Uncomment the following line to submit the form programmatically
+        // document.getElementById("registerForm").submit();
+      } else {
+        alert("Please fill all fields correctly.");
+      }
+    });
+  </script>
+</body>
+</html>

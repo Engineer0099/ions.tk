@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR Code Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f0f0f0;
+      margin: 0;
+    }
+    input {
+      padding: 10px;
+      margin: 10px;
+      font-size: 16px;
+      width: 300px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    #qrcode {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>QR Code Generator</h2>
+  <input type="url" id="urlInput" placeholder="Enter URL" required>
+  <button onclick="generateQRCode()">Create QR Code</button>
+  <div id="qrcode"></div>
+
+  <!-- QR Code Library -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+
+  <script>
+    function generateQRCode() {
+      const url = document.getElementById('urlInput').value;
+
+      // URL Validation - Ensure the entered text is a valid URL
+      const regex = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
+
+      if (url && regex.test(url)) {
+        // Clear previous QR code
+        document.getElementById('qrcode').innerHTML = '';
+        
+        // Generate new QR code as an image (using Data URL format)
+        QRCode.toDataURL(url, function (error, urlData) {
+          if (error) {
+            console.error(error);
+            alert('Error generating QR code!');
+          } else {
+            // Create an image element and set the generated QR code as the src
+            const img = document.createElement('img');
+            img.src = urlData;
+            document.getElementById('qrcode').appendChild(img);
+          }
+        });
+      } else {
+        alert('Please enter a valid URL (e.g., https://example.com)');
+      }
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Device Orientation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        #direction {
+            font-size: 40px;
+            font-weight: bold;
+            color: #3498db;
+        }
+    </style>
+</head>
+<body>
+    <h1>Device Orientation & Direction</h1>
+    <h2 id="direction">Waiting for sensor data...</h2>
+
+    <script>
+        function getDirection(angle) {
+            if (angle >= 315 || angle < 45) return "North";
+            if (angle >= 45 && angle < 135) return "East";
+            if (angle >= 135 && angle < 225) return "South";
+            if (angle >= 225 && angle < 315) return "West";
+            return "Unknown";
+        }
+
+        if (window.DeviceOrientationEvent) {
+            window.addEventListener("deviceorientation", function(event) {
+                let alpha = event.alpha; // Rotation around the Z-axis (0-360 degrees)
+
+                if (alpha !== null) {
+                    let direction = getDirection(alpha);
+                    document.getElementById("direction").innerText = `Direction: ${direction} (${Math.round(alpha)}°)`;
+                }
+            }, true);
+        } else {
+            document.getElementById("direction").innerText = "Device Orientation API Not Supported";
+        }
+    </script>
+</body>
+</html>

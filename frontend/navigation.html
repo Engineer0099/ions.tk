@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Navigation</title>
+  <style>
+    /* General Styles */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: #f4f4f4;
+      padding: 20px;
+    }
+
+    /* Top Bar */
+    .top-bar {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 20px;
+    }
+
+    .cancel-button {
+      background-color: #dc3545;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .cancel-button:hover {
+      background-color: #c82333;
+    }
+
+    /* Heading */
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    /* 3D Rendering Field */
+    .rendering-field {
+      width: 100%;
+      height: 300px;
+      background-color: #e9ecef;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+
+    .rendering-field p {
+      font-size: 1.5rem;
+      color: #777;
+    }
+
+    /* Arrived Button */
+    .arrived-button {
+      text-align: center;
+    }
+
+    .arrived-button button {
+      padding: 10px 20px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .arrived-button button:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Bar with Cancel Button -->
+  <div class="top-bar">
+    <button class="cancel-button" onclick="cancelNavigation()">❌ Cancel</button>
+  </div>
+
+  <!-- Heading -->
+  <h1 id="navigationStatus">Wrong/Correct</h1>
+
+  <!-- 3D Rendering Field -->
+  <div class="rendering-field">
+    <p>3D Rendering Placeholder</p>
+  </div>
+
+  <!-- Arrived Button -->
+  <div class="arrived-button">
+    <button onclick="arrived()">Arrived</button>
+  </div>
+
+  <script>
+    // Cancel Navigation Functionality
+    function cancelNavigation() {
+      if (confirm('Are you sure you want to cancel navigation?')) {
+        window.location.href = 'home.html'; // Redirect to home page or another page
+      }
+    }
+
+    // Arrived Functionality
+    function arrived() {
+      alert('You have arrived at your destination!');
+      // Add further logic to handle arrival
+      
+      window.location.href = 'home2.html'; 
+      // Redirect to home page or another page
+    }
+
+    // Dynamic Heading (Example: Toggle between Wrong/Correct)
+    const navigationStatus = document.getElementById('navigationStatus');
+    let isCorrect = false;
+
+    setInterval(() => {
+      isCorrect = !isCorrect;
+      navigationStatus.textContent = isCorrect ? 'Correct ✅' : 'Wrong ❌';
+    }, 3000); // Toggle every 3 seconds (for demonstration)
+  </script>
+</body>
+</html>

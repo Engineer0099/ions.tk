@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home Page</title>
+  <style>
+    /* General Styles */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Top Bar */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #333;
+      color: white;
+      padding: 10px 20px;
+      z-index: 0.9;
+    }
+
+    .top-bar .menu-icon,
+    .top-bar .profile-icon {
+      cursor: pointer;
+    }
+
+    .top-bar .profile-icon img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
+
+    /* Left Nav Bar */
+    .left-nav {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      width: 250px;
+      height: 100%;
+      background-color: #222;
+      color: white;
+      padding-top: 60px;
+      transition: left 0.3s;
+      z-index: 1;
+    }
+
+    .left-nav.open {
+      left: 0;
+    }
+
+    .left-nav ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .left-nav ul li {
+      padding: 15px 20px;
+      cursor: pointer;
+    }
+
+    .left-nav ul li:hover {
+      background-color: #444;
+    }
+
+    /* Right Nav Bar */
+    .right-nav {
+      position: fixed;
+      top: 60px;
+      right: -200px;
+      width: 200px;
+      background-color: #222;
+      color: white;
+      transition: right 0.3s;
+      z-index: 1;
+    }
+
+    .right-nav.open {
+      right: 0;
+    }
+
+    .right-nav ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .right-nav ul li {
+      padding: 15px 20px;
+      cursor: pointer;
+    }
+
+    .right-nav ul li:hover {
+      background-color: #444;
+    }
+
+    /* Slide Background */
+    .slide-container {
+      position: relative;
+      width: 100%;
+      height: 400px;
+      overflow: hidden;
+    }
+
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .slide.active {
+      opacity: 1;
+    }
+
+    .slide h1 {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 3rem;
+      text-align: center;
+    }
+
+    /* Services and Description Containers */
+    .container {
+      padding: 40px 20px;
+      /* text-align: center; */
+    }
+
+    .container h1 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .container p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+    }
+    section {
+            background: white;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+
+            h4 {
+                color: #333;
+            }
+            ul {
+                margin-left: 20px;
+            }
+            p {
+                font-weight: bold;
+                color: #555;
+                margin-bottom: 5px;
+            }
+        }
+
+    /* Footer */
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+
+    footer p {
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="menu-icon" onclick="toggleLeftNav()">&#9776; Menu</div>
+    <div class="profile-icon" onclick="toggleRightNav()">
+      <img src="img/profilePlaceholderAvator.png" alt="Profile">
+    </div>
+  </div>
+
+  <!-- Left Nav Bar -->
+  <div class="left-nav" id="leftNav">
+    <ul>
+      <li onclick="changePage('home.html')">Home</li>
+      <li onclick="changePage('about.html')">About</li>
+      <li onclick="changePage('help.html')">Help</li>
+      <li onclick="changePage('contact.html')">Contacts</li>
+      <li onclick="changePage('home.html')">Service</li>
+      <li onclick="changePage('notification.html')">Notification</li>
+    </ul>
+  </div>
+
+  <!-- Right Nav Bar -->
+  <div class="right-nav" id="rightNav">
+    <ul>
+      <li onclick="changePage('login.html')">Log Out</li>
+      <li onclick="changePage('Profile.html')">Profile</li>
+      <li onclick="window.location.href='settings.html'">Settings</li>
+    </ul>
+  </div>
+
+  <!-- Slide Background -->
+  <div class="slide-container">
+    <div class="slide active" style="background-image: url('img/indoor-navigation-2.jpg');">
+      <h1>Welcome to Our Website</h1>
+    </div>
+    <div class="slide" style="background-image: url('img/indoor.webp');">
+      <h1>Explore Our Services</h1>
+    </div>
+    <div class="slide" style="background-image: url('img/test5.jpg');">
+      <h1>Contact Us Today</h1>
+    </div>
+  </div>
+
+  <!-- Services Container -->
+  <div class="container">
+    <h1>Services</h1>
+    <section>
+      <h4>Headmaster Office</h4>
+      <ul>
+          <li>School administration and leadership</li>
+          <li>Policy implementation</li>
+          <li>Staff and student discipline management</li>
+          <li>Communication with education authorities and stakeholders</li>
+      </ul>
+      <i>Location:</i>
+  </section>
+  
+  <section>
+      <h4>Deputy Headmaster’s Office (Academics & Discipline)</h4>
+      <ul>
+          <li>Academic performance supervision</li>
+          <li>Teachers' work supervision</li>
+          <li>Student discipline management</li>
+          <li>Examination coordination</li>
+      </ul>
+      <i>Location:</i>
+  </section>
+  
+  <section>
+      <h4>Academic Office</h4>
+      <ul>
+          <li>Curriculum implementation</li>
+          <li>Lesson and timetable planning</li>
+          <li>Exam and assessment management</li>
+          <li>Student academic progress tracking</li>
+      </ul>
+      <i>Location:</i>
+  </section>
+  
+  <section>
+      <h4>Examinations Office</h4>
+      <ul>
+          <li>Exam setting, coordination, and invigilation</li>
+          <li>Grading and results processing</li>
+          <li>Record-keeping of academic performance</li>
+      </ul>
+      <i>Location:</i>
+  </section>
+  
+  <section>
+      <h4>Library Office</h4>
+      <ul>
+          <li>Book lending and returns</li>
+          <li>Research and reading support</li>
+          <li>Library resource management</li>
+      </ul>
+      <i>Location:</i>
+  </section>
+  
+  <section>
+      <h4>Sports & Games Office</h4>
+      <ul>
+          <li>Sports activities coordination</li>
+          <li>Team and inter-school competition management</li>
+          <li>Equipment management</li>
+      </ul>
+      <i>Location:</i>
+  </section>
+  
+  <section>
+      <h4>School Health/First Aid Office</h4>
+      <ul>
+          <li>Minor medical care</li>
+          <li>Health record-keeping</li>
+          <li>Emergency response coordination</li>
+      </ul>
+      <i>Location:</i>
+  </section>
+  </div>
+
+  <!-- Description Container -->
+  <div class="container">
+    <h1>Descriptions</h1>
+    <section>
+      <h4>Headmaster/Principal’s Office</h4>
+      <p>The office responsible for overall school administration and leadership.</p>
+      <ul>
+          <li>Oversees school operations and policy implementation.</li>
+          <li>Handles staff and student discipline management.</li>
+          <li>Communicates with education authorities and stakeholders.</li>
+      </ul>
+      <i>Location:</i>
+  </section>
+  
+  <section>
+      <h4>Deputy Headmaster’s Office (Academics & Discipline)</h4>
+      <p>Supports the headmaster by overseeing academic and disciplinary matters.</p>
+      <ul>
+          <li>Monitors academic performance and teacher effectiveness.</li>
+          <li>Ensures proper discipline among students.</li>
+          <li>Coordinates school examinations and assessments.</li>
+      </ul>
+      <i>Location:</i>
+  </section>
+  
+  <section>
+      <h4>Academic Office</h4>
+      <p>Handles the school's academic curriculum, lesson planning, and student performance tracking.</p>
+      <ul>
+          <li>Manages subject curriculum implementation.</li>
+          <li>Organizes school timetables and lesson plans.</li>
+          <li>Tracks student academic progress and performance.</li>
+      </ul>
+      <i>Location:</i>
+  </section>
+  
+  <section>
+      <h4>Examinations Office</h4>
+      <p>Responsible for the administration of school exams and assessments.</p>
+      <ul>
+          <li>Prepares, schedules, and coordinates exams.</li>
+          <li>Ensures grading and processing of student results.</li>
+          <li>Maintains examination records and result archives.</li>
+      </ul>
+      <i>Location:</i>
+  </section>
+  
+  <section>
+      <h4>Library Office</h4>
+      <p>Manages the school library and provides access to learning resources.</p>
+      <ul>
+          <li>Supervises book lending and returns.</li>
+          <li>Assists students with research and reading support.</li>
+          <li>Organizes and maintains library materials.</li>
+      </ul>
+      <i>Location:</i>
+  </section>
+  
+  <section>
+      <h4>Sports & Games Office</h4>
+      <p>Oversees extracurricular sports activities and student participation in games.</p>
+      <ul>
+          <li>Organizes school sports events and competitions.</li>
+          <li>Manages sports equipment and facilities.</li>
+          <li>Encourages student participation in physical activities.</li>
+      </ul>
+      <i>Location:</i>
+  </section>
+  
+  <section>
+      <h4>School Health/First Aid Office</h4>
+      <p>Provides first aid and basic health care services for students and staff.</p>
+      <ul>
+          <li>Administers minor medical treatments.</li>
+          <li>Keeps records of student health conditions.</li>
+          <li>Handles emergency medical situations.</li>
+      </ul>
+      <i>Location:</i>
+  </section>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 IONS. All rights reserved.</p>
+    <p>Contact: info@ions.com | Phone: +255 617 772 491</p>
+  </footer>
+
+  <script>
+          const rightNav = document.getElementById('rightNav');
+          const leftNav = document.getElementById('leftNav');
+          
+
+    // Toggle Left Nav Bar
+    function toggleLeftNav() {
+      // const leftNav = document.getElementById('leftNav');
+      leftNav.classList.toggle('open');
+    }
+
+    // Toggle Right Nav Bar
+    function toggleRightNav() {
+      // const rightNav = document.getElementById('rightNav');
+      rightNav.classList.toggle('open');
+    }
+
+    // Slide Transition
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === index);
+      });
+    }
+
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % slides.length;
+      showSlide(currentSlide);
+    }
+
+    setInterval(nextSlide, 5000); // Change slide every 5 seconds
+
+
+    //Changing Pages
+    function changePage(Page){
+      window.location.href = Page;
+    }
+
+
+
+  </script>
+</body>
+</html>

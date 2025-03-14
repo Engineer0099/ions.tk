@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Options</title>
+  <style>
+    /* General Styles */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: #f4f4f4;
+      padding: 20px;
+    }
+
+    /* Top Heading */
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    /* Container */
+    .container {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    /* Collapsible Sections */
+    .collapsible {
+      margin-bottom: 15px;
+    }
+
+    .collapsible-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      background-color: #007bff;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .collapsible-header:hover {
+      background-color: #0056b3;
+    }
+
+    .collapsible-content {
+      display: none;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-top: none;
+      border-radius: 0 0 4px 4px;
+    }
+
+    .collapsible-content.show {
+      display: block;
+    }
+
+    .collapsible-content label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    /* Start Button */
+    .start-button {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .start-button button {
+      padding: 10px 20px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .start-button button:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Heading -->
+  <h1>Options</h1>
+
+  <!-- Container -->
+  <div class="container">
+    <!-- Disability Section -->
+    <div class="collapsible">
+      <div class="collapsible-header" onclick="toggleCollapsible('disability')">
+        <span>Disability</span>
+        <span>▼</span>
+      </div>
+      <div class="collapsible-content" id="disability">
+        <label>
+          <input type="checkbox"> Visual Impairment
+        </label>
+        <label>
+          <input type="checkbox"> Hearing Impairment
+        </label>
+        <label>
+          <input type="checkbox"> Mobility Impairment
+        </label>
+        <label>
+          <input type="checkbox"> Cognitive Impairment
+        </label>
+        <label>
+          <input type="checkbox"> Other
+        </label>
+      </div>
+    </div>
+
+    <!-- Preference Section -->
+    <div class="collapsible">
+      <div class="collapsible-header" onclick="toggleCollapsible('preference')">
+        <span>Preference</span>
+        <span>▼</span>
+      </div>
+      <div class="collapsible-content" id="preference">
+        <label>
+          <input type="checkbox"> Elevator
+        </label>
+        <label>
+          <input type="checkbox"> Stairs
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Start Button -->
+  <div class="start-button">
+    <button onclick="startNavigation()">Start</button>
+  </div>
+
+  <script>
+    // Toggle Collapsible Sections
+    function toggleCollapsible(id) {
+      const content = document.getElementById(id);
+      const allContents = document.querySelectorAll('.collapsible-content');
+
+      // Hide all other collapsible contents
+      allContents.forEach((item) => {
+        if (item.id !== id) {
+          item.classList.remove('show');
+        }
+      });
+
+      // Toggle the clicked collapsible content
+      content.classList.toggle('show');
+    }
+
+    // Start Navigation Functionality
+    function startNavigation() {
+      const disabilities = [];
+      const preferences = [];
+
+      // Get selected disabilities
+      document.querySelectorAll('#disability input:checked').forEach((checkbox) => {
+        disabilities.push(checkbox.parentElement.textContent.trim());
+      });
+
+      // Get selected preferences
+      document.querySelectorAll('#preference input:checked').forEach((checkbox) => {
+        preferences.push(checkbox.parentElement.textContent.trim());
+      });
+
+      alert(`Selected Disabilities: ${disabilities.join(', ') || 'None'}\nSelected Preferences: ${preferences.join(', ') || 'None'}`);
+      // Add further logic to handle the start navigation
+      window.location.href = 'navigation.html';
+    }
+  </script>
+</body>
+</html>
